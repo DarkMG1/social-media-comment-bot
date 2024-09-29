@@ -1,4 +1,4 @@
-from lib2to3.btm_utils import tokens
+from helper import read_tokens
 from groq import Groq
 
 tokens_file = read_tokens('tokens.txt')
