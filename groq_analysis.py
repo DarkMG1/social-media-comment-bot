@@ -25,7 +25,4 @@ def groq_analysis(comments):
     )
 
     sentiment_analysis = chat_completion.choices[0].message.content
-    print(sentiment_analysis)
-
-text_variable = 'I&#39;m not very knowledgeable but maybe those drag slicks are too much grip for the power level? Not sure if it&#39;s the case here, but the more grip you have the more resistance your engine has to overcome to rotate the wheel right? \n Steph...😊 \n Job looks like he hated being there'
-groq_analysis(text_variable)
+    return (sentiment_analysis)
