@@ -45,7 +45,4 @@ def get_video_comments(video_id, max):
     for i in range(0,max):
         result += comments[i] + "\n"
     print(result)
-# Replace 'VIDEO_ID' with the ID of the YouTube video you want to fetch comments from
-VIDEO_ID = 'yxoi8CiyCcU'
-
-get_video_comments(VIDEO_ID, 100)
+    return(result)

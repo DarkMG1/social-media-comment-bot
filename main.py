@@ -18,6 +18,8 @@ def link_parser(link):
     if (platform == "www.reddit.com"):
         r_link = arr.join("/")
         comments = reddit.get_reddit_comments(r_link)
+    else:
+        comments = "Please input a youtube.com, mastodon.social, or reddit.com link with the https:// prefix."
     return comments
 
 app = Flask(__name__)
@@ -35,8 +37,6 @@ def handle_link():
     if not link:
         return jsonify({"error": "No link provided"}), 400
 
-    # Process the link using function
-    
     # output below after result with function's return
     return jsonify({"result": groq.groq_analysis(link_parser(link))})
 
