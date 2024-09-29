@@ -11,34 +11,16 @@ def link_parser(link):
     comments = "" 
     if (platform == "www.youtube.com"):
         vid_id = arr[3].split("=")
-        comments = youtube.get_video_comments(vid_id)
-    if (platform == "mastodon.social"):
+        comments = youtube.get_video_comments(vid_id[1])
+    elif (platform == "mastodon.social"):
         id = arr[3] + "/" + arr[4]
         comments = mastodon_social.get_toots_after_main_toot(id)
-    if (platform == "www.reddit.com"):
-        r_link = arr.join("/")
-        comments = reddit.get_reddit_comments(r_link)
+    elif (platform == "www.reddit.com"):
+        comments = reddit.get_reddit_comments(link)
     else:
         comments = "Please input a youtube.com, mastodon.social, or reddit.com link with the https:// prefix."
     return comments
 
-app = Flask(__name__)
-
-# This function will process the link (dummy processing here)
-def process_link(link):
-    # Example: Just returning the reversed link as "processed"
-    return link[::-1]
-
-@app.route('/process-link', methods=['POST'])
-def handle_link():
-    data = request.get_json()
-    link = data.get('link')
-
-    if not link:
-        return jsonify({"error": "No link provided"}), 400
-
-    # output below after result with function's return
-    return jsonify({"result": groq.groq_analysis(link_parser(link))})
-
-if __name__ == '__main__':
-    app.run(debug=True)
+i_link = input("Enter a Youtube, Mastodon, or Reddit Link: ")
+comments = link_parser(i_link)
+print(groq.groq_analysis(comments))

@@ -29,4 +29,7 @@ def get_reddit_comments(post_url):
     # Replace MoreComments to get all comments
     submission.comments.replace_more(limit=None)
 
-    return submission.comments.list()
+    comments = ""
+    for comment in submission.comments.list():
+        comments += comment.body + "\n"
+    return comments

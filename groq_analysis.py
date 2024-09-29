@@ -1,3 +1,4 @@
+import youtube
 from helper import read_tokens
 from groq import Groq
 
@@ -5,8 +6,9 @@ tokens_file = read_tokens('tokens.txt')
 API_KEY = tokens_file.get('GROQ_API_KEY')
 
 def groq_analysis(comments):
+    print("Generating Rating.")
     client = Groq(
-        API_KEY,
+        api_key=API_KEY,
     )
 
     chat_completion = client.chat.completions.create(

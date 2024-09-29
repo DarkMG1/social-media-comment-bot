@@ -8,6 +8,7 @@ API_KEY = tokens_file.get('GOOGLE_API_KEY')
 max = 100
 
 def get_video_comments(video_id):
+    print("Finding Youtube Comments for Video ID: " + video_id)
     """Fetches comments from a YouTube video.
 
     Args:
@@ -45,7 +46,6 @@ def get_video_comments(video_id):
     print("Found " + str(len(comments)) + " comments." + "\n")
     for i in range(0,max):
         result += comments[i] + "\n"
-    print(result)
     return(result)
 
 # get_video_comments("yxoi8CiyCcU")
