@@ -1,11 +1,11 @@
-import googleapiclient.discovery
+from lib2to3.btm_utils import tokens
 
-file = open("token.txt", "r")
-for i in range(0,1):
-    line = file.readline()
-print(line)
-API_KEY = line.split("=")[1]
-print(API_KEY)
+import googleapiclient.discovery
+from helper import read_tokens
+
+tokens_file = read_tokens('tokens.txt')
+
+API_KEY = tokens_file.get('YOUTUBE_API_KEY')
 
 def get_video_comments(video_id, max):
     """Fetches comments from a YouTube video.
