@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Submission</title>
+  <!-- Import Material UI CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h4>Submit a Link</h4>
+    <form id="linkForm">
+      <div class="input-field">
+        <input id="link" type="url" class="validate" required>
+        <label for="link">Enter your link</label>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+
+  <!-- Import Material UI JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.getElementById('linkForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const link = document.getElementById('link').value;
+      
+      fetch('http://localhost:5000/process-link', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ link: link }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Output:', data);
+      // Display the output to the user
+      document.getElementById('output').textContent = `Processed Output: ${data.result}`;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });      // Add your submission logic here
+    });
+  </script>
+  
+<div id="output"></div>
+</body>
+</html>
