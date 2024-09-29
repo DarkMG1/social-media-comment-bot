@@ -4,7 +4,6 @@ import googleapiclient.discovery
 from helper import read_tokens
 
 tokens_file = read_tokens('tokens.txt')
-
 API_KEY = tokens_file.get('YOUTUBE_API_KEY')
 
 def get_video_comments(video_id, max):
