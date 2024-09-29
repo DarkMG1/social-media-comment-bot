@@ -9,7 +9,7 @@ def get_plain_text(html_content):
   return soup.get_text()
 
 
-def get_toots_after_main_toot(mastodon_client, main_toot_id, limit=40):
+def get_toots_after_main_toot(main_toot_id, limit=40):
   """Fetches toots that are replies to the main toot on Mastodon.
 
   Args:
@@ -20,6 +20,11 @@ def get_toots_after_main_toot(mastodon_client, main_toot_id, limit=40):
   Returns:
       A list of toots that are replies to the main toot.
   """
+
+  mastodon_client = Mastodon(
+        access_token=read_tokens('tokens.txt')['MASTODON_ACCESS_TOKEN'],
+        api_base_url='https://mastodon.social'
+  )
 
   # Fetch the context of the main toot
   response = mastodon_client.status_context(main_toot_id)
