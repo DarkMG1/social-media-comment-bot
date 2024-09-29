@@ -4,9 +4,10 @@ import googleapiclient.discovery
 from helper import read_tokens
 
 tokens_file = read_tokens('tokens.txt')
-API_KEY = tokens_file.get('YOUTUBE_API_KEY')
+API_KEY = tokens_file.get('GOOGLE_API_KEY')
+max = 100
 
-def get_video_comments(video_id, max):
+def get_video_comments(video_id):
     """Fetches comments from a YouTube video.
 
     Args:
@@ -46,3 +47,5 @@ def get_video_comments(video_id, max):
         result += comments[i] + "\n"
     print(result)
     return(result)
+
+# get_video_comments("yxoi8CiyCcU")
