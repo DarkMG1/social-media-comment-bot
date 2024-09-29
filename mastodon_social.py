@@ -8,8 +8,8 @@ def get_plain_text(html_content):
   soup = BeautifulSoup(html_content, 'html.parser')
   return soup.get_text()
 
-
-def get_toots_after_main_toot(main_toot_id, limit=40):
+limit=40
+def get_toots_after_main_toot(main_toot_id):
   """Fetches toots that are replies to the main toot on Mastodon.
 
   Args:
